@@ -106,8 +106,10 @@ object "Forge" {
                 let arrayLengthPosition := add(4, offsetOfArray)
                 let arrayLength := calldataload(arrayLengthPosition)
 
-                // Store array length in memory
+                // Load free memory pointer (0x80)
                 let freeMemoryPointer := mload(0x40)
+
+                // Store array length at free memory pointer
                 let arrayLengthPointer_ := freeMemoryPointer
                 mstore(arrayLengthPointer_, arrayLength)
                 incrementFreeMemoryPointer(freeMemoryPointer, 0x20)
